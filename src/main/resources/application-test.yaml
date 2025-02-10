@@ -1,0 +1,7 @@
+debug: ${APP_DEBUG:true}
+
+spring:
+  liquibase:
+    default-schema: ${PG_DB_NAME:report}
+    change-log: classpath:db/changelog/liquibase-master.yaml
+    enabled: false
