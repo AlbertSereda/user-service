@@ -5,8 +5,8 @@ spring:
     config:
       discovery:
         enabled: true
-        service-id: config-service
-      name: user-service
+        service-id: ${CONFIG_SERVICE_DISCOVERY_ID:config-service}
+      name: ${spring.application.name}
       fail-fast: true
   config:
     import: "optional:configserver:"
