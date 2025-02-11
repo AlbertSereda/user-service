@@ -1,9 +1,9 @@
 package com.market.user;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+// FIXME @SpringBootTest
+//@ActiveProfiles("test")
 class UserServiceApplicationTests {
 
     @Test

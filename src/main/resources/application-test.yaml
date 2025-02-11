@@ -1,7 +1,35 @@
-debug: ${APP_DEBUG:true}
-
 spring:
+  datasource:
+    url: jdbc:postgresql://postgresdb:5532/user_service_db
+    username: user_service
+    password: user_service
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
   liquibase:
-    default-schema: ${PG_DB_NAME:report}
     change-log: classpath:db/changelog/liquibase-master.yaml
     enabled: false
+  cloud:
+    config:
+      discovery:
+        enabled: false
+        service-id: config-service
+      name: user-service
+      fail-fast: false
+      enabled: false
+  config:
+    import: "optional:configserver:"
+  main:
+    allow-bean-definition-overriding: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${DISCOVERY_SERVICE_URL:http://discovery-service:8761/eureka/}
+    register-with-eureka: false
+    fetch-registry: false
+    enabled: false
+  instance:
+    prefer-ip-address: false
