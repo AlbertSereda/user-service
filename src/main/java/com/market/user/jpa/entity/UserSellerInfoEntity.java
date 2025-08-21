@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -34,7 +35,7 @@ public class UserSellerInfoEntity {
 
     @Column(name = "rating", precision = 2, scale = 1)
     @Schema(description = "Seller rating")
-    private Double rating;
+    private BigDecimal rating;
 
     @Column(name = "company_name", unique = true, nullable = false)
     @Schema(description = "Name of the company")

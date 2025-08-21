@@ -11,25 +11,5 @@ spring:
   liquibase:
     change-log: classpath:db/changelog/liquibase-master.yaml
     enabled: false
-  cloud:
-    config:
-      discovery:
-        enabled: false
-        service-id: config-service
-      name: user-service
-      fail-fast: false
-      enabled: false
-  config:
-    import: "optional:configserver:"
   main:
     allow-bean-definition-overriding: true
-
-eureka:
-  client:
-    service-url:
-      defaultZone: ${DISCOVERY_SERVICE_URL:http://discovery-service:8761/eureka/}
-    register-with-eureka: false
-    fetch-registry: false
-    enabled: false
-  instance:
-    prefer-ip-address: false
