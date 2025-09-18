@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-service
+  namespace: all-in-market
+  labels:
+    app: user-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: user-service
+  template:
+    metadata:
+      name: user-service
+      labels:
+        app: user-service
+    spec:
+      containers:
+        - name: user-service
+          image: albertsereda/all-in-market-user-service
+          imagePullPolicy: Always
+          env:
+            - name: SPRING_CONFIG_IMPORT
+              value: file:/config/
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          volumeMounts:
+            - name: user-service-config
+              mountPath: /config
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "250m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+      volumes:
+        - name: user-service-config
+          configMap:
+            name: user-service-config
+      restartPolicy: Always
